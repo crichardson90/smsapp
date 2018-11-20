@@ -12,8 +12,14 @@ class PagesController < ApplicationController
     twilio_phone_number = ENV['TWILIO_PHONE_NUMBER']
 
     sender_number = params["From"]
-
+    incoming_message = params["Body"]
     message = "Hello from Coty's Macbook."
+
+  if incoming_message == "Secret"
+    message = "You've unlocked a secret."
+  else
+    message = "Boring normal message"
+  end
 
     @client = Twilio::REST::Client.new(twilio_sid, twilio_token)
     @client.messages.create(
