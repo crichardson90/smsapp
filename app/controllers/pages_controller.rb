@@ -15,6 +15,12 @@ class PagesController < ApplicationController
     incoming_message = params["Body"]
     message = "Hello from Coty's Macbook."
 
+    @new_message = Message.new
+    @new_message.from_number = params["From"]
+    @new_message.body = params["Body"]
+    @new_message.from_city = params["FromCity"]
+    @new_message.save
+
   case incoming_message
     when "Secret"
       message = "You've unlocked a secret!"
@@ -28,6 +34,8 @@ class PagesController < ApplicationController
   # else
   #   message = "Boring normal message"
   # end
+
+
 
     @client = Twilio::REST::Client.new(twilio_sid, twilio_token)
     @client.messages.create(
