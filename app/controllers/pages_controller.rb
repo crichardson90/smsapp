@@ -13,7 +13,7 @@ class PagesController < ApplicationController
 
     sender_number = params["From"]
 
-    message = "Hello from Main Street Codes."
+    message = "Hello from Coty's Macbook."
 
     @client = Twilio::REST::Client.new(twilio_sid, twilio_token)
     @client.messages.create(
