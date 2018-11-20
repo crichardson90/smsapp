@@ -15,11 +15,19 @@ class PagesController < ApplicationController
     incoming_message = params["Body"]
     message = "Hello from Coty's Macbook."
 
-  if incoming_message == "Secret"
-    message = "You've unlocked a secret."
-  else
-    message = "Boring normal message"
+  case incoming_message
+    when "Secret"
+      message = "You've unlocked a secret!"
+    when "Pizza"
+      message = "Do you want to order a pizza?"
+    else
+      message = "This is a boring message"
   end
+  # if incoming_message == "Secret"
+  #   message = "You've unlocked a secret."
+  # else
+  #   message = "Boring normal message"
+  # end
 
     @client = Twilio::REST::Client.new(twilio_sid, twilio_token)
     @client.messages.create(
